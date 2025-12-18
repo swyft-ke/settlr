@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Mock property data
@@ -29,7 +29,20 @@ export default function BucketListPage() {
         }
     };
 
+    const [showDatePicker, setShowDatePicker] = useState(false);
+    const [selectedDate, setSelectedDate] = useState("");
+    const [selectedTime, setSelectedTime] = useState("");
+
     const proceedToSchedule = () => {
+        setShowDatePicker(true);
+    };
+
+    const confirmDate = () => {
+        if (!selectedDate || !selectedTime) {
+            alert("Please select both date and time");
+            return;
+        }
+        setShowDatePicker(false);
         setShowConfirmModal(true);
     };
 
@@ -39,6 +52,8 @@ export default function BucketListPage() {
         localStorage.setItem('settlr_selected_units', selectedUnits.toString());
         localStorage.setItem('settlr_total_price', totalPrice.toString());
         localStorage.setItem('settlr_bucket_list', JSON.stringify(selectedProperties));
+        localStorage.setItem('settlr_tour_date', selectedDate);
+        localStorage.setItem('settlr_tour_time', selectedTime);
 
         router.push('/dashboard/client');
     };
@@ -112,6 +127,53 @@ export default function BucketListPage() {
                     Choose a Date
                 </Button>
             </div>
+
+            {/* Date Picker Modal */}
+            {showDatePicker && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-6 z-50">
+                    <div className="bg-white rounded-3xl p-6 max-w-md w-full space-y-6">
+                        <div className="flex justify-between items-center">
+                            <h3 className="text-xl font-bold">Choose Date & Time</h3>
+                            <button onClick={() => setShowDatePicker(false)}>
+                                <X className="h-6 w-6" />
+                            </button>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium mb-2">Tour Date</label>
+                                <input
+                                    type="date"
+                                    value={selectedDate}
+                                    onChange={(e) => setSelectedDate(e.target.value)}
+                                    min={new Date().toISOString().split('T')[0]}
+                                    className="w-full h-12 px-4 rounded-xl border border-gray-300 focus:outline-none focus:border-settlr-green"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium mb-2">Preferred Time</label>
+                                <select
+                                    value={selectedTime}
+                                    onChange={(e) => setSelectedTime(e.target.value)}
+                                    className="w-full h-12 px-4 rounded-xl border border-gray-300 focus:outline-none focus:border-settlr-green"
+                                >
+                                    <option value="">Select time</option>
+                                    <option value="Morning (9AM - 1PM)">Morning (9AM - 1PM)</option>
+                                    <option value="Afternoon (2PM - 6PM)">Afternoon (2PM - 6PM)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <Button
+                            onClick={confirmDate}
+                            className="w-full bg-settlr-green text-white hover:bg-settlr-green/90 h-12 font-bold rounded-full"
+                        >
+                            Confirm Date
+                        </Button>
+                    </div>
+                </div>
+            )}
 
             {/* Confirmation Modal */}
             {showConfirmModal && (
