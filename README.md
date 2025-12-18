@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Settlr
 
-## Getting Started
+**Real Estate Logistics Platform for Nairobi**
 
-First, run the development server:
+Settlr is a premium "Real Estate Logistics" platform that solves the chaotic house-hunting experience in Nairobi. Unlike competitors who sell "listings" (information), Settlr sells "viewings" (experience). We verify the units, drive the client to them, and handle the negotiations.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Quick Start
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Prerequisites
+- Node.js 20+
+- npm or yarn
+- Supabase account
+- Google Maps API key
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd settlr
+   ```
 
-## Learn More
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Set up environment variables**
+   
+   Copy `.env.example` to `.env.local` and fill in your credentials:
+   ```bash
+   cp .env.example .env.local
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   Required variables:
+   - `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Your Supabase anon key
+   - `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` - Your Google Maps API key
+   - `GEMINI_API_KEY` - Your Gemini API key (for AI features)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Build for production**
+   ```bash
+   npm run build
+   npm start
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📚 Documentation
+
+- **[Product Requirements Document (PRD)](docs/prd.md)** - Complete product specification, user personas, and success metrics
+- **[Implementation Plan](docs/implementation_plan.md)** - Technical architecture and implementation strategy
+- **[Task List](docs/task.md)** - Development progress tracker
+- **[Walkthrough](docs/walkthrough.md)** - Implementation summary and verification results
+
+## 🏗️ Tech Stack
+
+- **Frontend**: Next.js 16 (App Router), React 19, Tailwind CSS v4
+- **Backend**: Next.js API Routes (Serverless)
+- **Database**: PostgreSQL (via Supabase)
+- **Authentication**: Supabase Auth
+- **AI**: Google Gemini Pro Vision
+- **Payments**: Lipana.dev (M-Pesa)
+- **Maps**: Google Maps Platform
+- **PWA**: next-pwa
+
+## 🎨 Design System
+
+- **Colors**:
+  - Primary Green: `#00c763`
+  - Accent Yellow: `#f1c40f`
+  - Black: `#000000`
+  - White: `#ffffff`
+- **Font**: Space Grotesk
+
+## 📱 Key Features
+
+### Client Flow
+1. **Landing Page** - Premium hero section
+2. **Interactive Quiz** - Swipe-based preference collection
+3. **Blurred Results** - Tease verified matches
+4. **Payment Gateway** - M-Pesa integration
+5. **Tour Scheduling** - Book chauffeured viewings
+6. **Dashboard** - Manage tours and favorites
+
+### Partner (Scout) Flow
+1. **Login** - Role-based authentication
+2. **Dashboard** - Today's jobs and navigation
+3. **AI Inventory Upload** - Photo + AI-generated descriptions
+4. **QR Verification** - Client identity verification
+
+## 🚧 Current Status
+
+✅ MVP Complete
+- All core user flows implemented
+- PWA-ready with offline support
+- Responsive design (mobile-first)
+- Type-safe with TypeScript
+- Production build verified
+
+## 🔜 Next Steps
+
+1. Set up Supabase database schema
+2. Implement real payment integration (Lipana.dev)
+3. Add Google Maps integration
+4. Connect Gemini API for real AI generation
+5. Deploy to Vercel
+
+## 🤝 Contributing
+
+This is a private project. For questions or collaboration, contact the team lead.
+
+## 📄 License
+
+Proprietary - Settlr Inc. © 2025
