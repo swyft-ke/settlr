@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-space-grotesk);
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
   --color-settlr-green: #00c763;
   --color-settlr-yellow: #f1c40f;
   --color-settlr-black: #000000;
@@ -16,12 +16,12 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #1a1a1a;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: 'Space Grotesk', sans-serif;
 }

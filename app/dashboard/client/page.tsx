@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Calendar, Clock, MapPin, CheckCircle } from "lucide-react";
+import { Calendar, Clock, MapPin, CheckCircle, Truck } from "lucide-react";
 
 export default function ClientDashboard() {
+    const router = useRouter();
     const [scheduled, setScheduled] = useState(false);
 
     // Mock Scheduling
@@ -15,7 +17,7 @@ export default function ClientDashboard() {
 
     if (scheduled) {
         return (
-            <div className="min-h-screen bg-gray-50 p-4">
+            <div className="min-h-screen bg-gray-50 p-4 pb-32">
                 <h1 className="text-2xl font-bold mb-6">My Tours</h1>
                 <Card className="border-l-4 border-l-settlr-green">
                     <CardHeader>
@@ -49,8 +51,19 @@ export default function ClientDashboard() {
                         </div>
                     </CardContent>
                 </Card>
+
+                {/* Fixed Bottom Button */}
+                <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-6">
+                    <Button
+                        onClick={() => router.push('/moving-service')}
+                        className="w-full bg-settlr-green text-white hover:bg-settlr-green/90 h-14 font-bold rounded-full text-lg"
+                    >
+                        <Truck className="mr-2 h-5 w-5" />
+                        📦 Plan Your Move
+                    </Button>
+                </div>
             </div>
-        )
+        );
     }
 
     return (
